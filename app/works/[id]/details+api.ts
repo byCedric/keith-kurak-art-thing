@@ -3,9 +3,9 @@ import { type ExpoRequest, ExpoResponse } from 'expo-router/server';
 import cachedBaskets from '~/local-data/Basketry.json';
 
 export async function GET(request: ExpoRequest) {
-  // Abort if no id is provided
+  // Abort if no (work) id is provided
   const id = request.expoUrl.searchParams.get('id');
-  if (!id) return ExpoResponse.json({ error: 'No id provided' }, { status: 400 });
+  if (!id) return ExpoResponse.json({ error: 'No work id provided' }, { status: 400 });
 
   // Return cached data if available
   const basket = cachedBaskets.data.find((record: any) => record.id === id);
