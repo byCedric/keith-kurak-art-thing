@@ -4,7 +4,7 @@ import { Text, View, FlatList, useTheme } from "@/components/Themed";
 
 const categories = require("@/data/categories.json");
 
-export default function TabOneScreen() {
+export default function BrowseScreen() {
   const theme = useTheme();
 
   return (

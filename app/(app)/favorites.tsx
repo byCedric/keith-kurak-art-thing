@@ -5,7 +5,7 @@ import { Image } from "expo-image";
 import { Link } from "expo-router";
 import { Text, View, FlatList, useTheme } from "@/components/Themed";
 
-export default function TabTwoScreen() {
+export default function FavoritesScreen() {
   const theme = useTheme();
 
   const queryClient = useQueryClient();
