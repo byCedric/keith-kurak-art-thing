@@ -8,11 +8,6 @@ import { ThemeProvider } from '@/providers/theme';
 // Catch any errors thrown by the Layout component or children
 export { ErrorBoundary } from "expo-router";
 
-export const unstable_settings = {
-  // Ensure that reloading on `/modal` keeps a back button present.
-  initialRouteName: "(app)",
-};
-
 export default function RootLayout() {
   return (
     <ThemeProvider>
@@ -21,7 +16,6 @@ export default function RootLayout() {
           <SplashScreenProvider>
             <Stack screenOptions={{ headerBackTitleVisible: false }}>
               <Stack.Screen name="(app)" options={{ headerShown: false }} />
-              <Stack.Screen name="modal" options={{ presentation: "modal" }} />
             </Stack>
           </SplashScreenProvider>
         </AssetsProvider>
