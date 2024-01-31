@@ -1,4 +1,4 @@
-import { Stack } from "expo-router";
+import { Stack } from 'expo-router';
 
 import { AssetsProvider } from '@/providers/assets';
 import { QueryProvider } from '@/providers/query';
@@ -6,7 +6,7 @@ import { SplashScreenProvider } from '@/providers/splash';
 import { ThemeProvider } from '@/providers/theme';
 
 // Catch any errors thrown by the Layout component or children
-export { ErrorBoundary } from "expo-router";
+export { ErrorBoundary } from 'expo-router';
 
 export default function RootLayout() {
   return (
@@ -21,5 +21,5 @@ export default function RootLayout() {
         </AssetsProvider>
       </QueryProvider>
     </ThemeProvider>
-  )
+  );
 }

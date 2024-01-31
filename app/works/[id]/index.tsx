@@ -1,31 +1,27 @@
-import {
-  StyleSheet,
-  ScrollView,
-  useWindowDimensions,
-  TouchableOpacity,
-} from "react-native";
-import { useState, useEffect, useCallback } from "react";
-import { Stack, useLocalSearchParams } from "expo-router";
-import { Image } from "expo-image";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { FontAwesome6 } from "@expo/vector-icons";
-import { Text, View, useTheme } from "@/components/Themed";
+import { FontAwesome6 } from '@expo/vector-icons';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { Image } from 'expo-image';
+import { Stack, useLocalSearchParams } from 'expo-router';
+import { useState, useEffect, useCallback } from 'react';
+import { StyleSheet, ScrollView, useWindowDimensions, TouchableOpacity } from 'react-native';
 import Animated, {
   useSharedValue,
   withTiming,
   withSequence,
   useAnimatedStyle,
-} from "react-native-reanimated";
+} from 'react-native-reanimated';
+
+import { Text, View, useTheme } from '@/components/Themed';
 
 async function postFav(id: string, count: number, image: string) {
   try {
     const response = await fetch(`/works/${id}/fav`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        Accept: "application.json",
-        "Content-Type": "application/json",
+        Accept: 'application.json',
+        'Content-Type': 'application/json',
       },
-      cache: "default",
+      cache: 'default',
       body: JSON.stringify({ count, image }),
     });
     const data = await response.json();
@@ -59,9 +55,7 @@ export default function WorkDetailPage() {
   const query = useQuery({
     queryKey: [`id:${id}`],
     queryFn: async () => {
-      const response = await fetch(
-        `/works/${encodeURIComponent(id)}/details`
-      );
+      const response = await fetch(`/works/${encodeURIComponent(id)}/details`);
       // @ts-ignore
       return await response.json();
     },
@@ -82,8 +76,8 @@ export default function WorkDetailPage() {
   });
 
   useEffect(() => {
-    if (favQuery.status === "success") {
-      console.log("setting local favs", favQuery.data?.favs);
+    if (favQuery.status === 'success') {
+      console.log('setting local favs', favQuery.data?.favs);
       setLocalFavs(favQuery.data?.favs);
     }
   }, [favQuery.status]);
@@ -91,13 +85,13 @@ export default function WorkDetailPage() {
   const onPressFav = useCallback(async () => {
     readyMeterProgress.value = withSequence(
       withTiming(100, { duration: 3000 }),
-      withTiming(0, { duration: 1 })
+      withTiming(0, { duration: 1 }),
     );
     setClapDisabled(true);
     setTimeout(() => {
       setClapDisabled(false);
     }, 3000);
-    console.log("localFavs", localFavs);
+    console.log('localFavs', localFavs);
     setLocalFavs(localFavs + 1);
     // flimsy code, just bail
     if (!query.data?.data.images?.web?.url) {
@@ -114,7 +108,7 @@ export default function WorkDetailPage() {
     <View style={{ flex: 1 }}>
       <Stack.Screen
         options={{
-          title: item?.title || "Loading...",
+          title: item?.title || 'Loading...',
         }}
       />
 
@@ -124,7 +118,7 @@ export default function WorkDetailPage() {
             style={{
               height: dimensions.width,
               width: dimensions.width,
-              backgroundColor: "whitesmoke",
+              backgroundColor: 'whitesmoke',
             }}
             source={{ uri: item.images.web.url }}
             contentFit="contain"
@@ -135,24 +129,16 @@ export default function WorkDetailPage() {
           <View
             style={{
               marginBottom: 2,
-              flexDirection: "row",
-              justifyContent: "space-between",
-            }}
-          >
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+            }}>
             <Text style={styles.title}>{item?.title}</Text>
-            <View style={{ marginTop: 12, flexDirection: "row" }}>
-              <TouchableOpacity
-                disabled={clapDisabled}
-                onPress={onPressFav}
-              >
+            <View style={{ marginTop: 12, flexDirection: 'row' }}>
+              <TouchableOpacity disabled={clapDisabled} onPress={onPressFav}>
                 <FontAwesome6
                   name="hands-clapping"
                   size={20}
-                  color={
-                    clapDisabled
-                      ? theme.backgroundDim
-                      : theme.tint
-                  }
+                  color={clapDisabled ? theme.backgroundDim : theme.tint}
                 />
               </TouchableOpacity>
               {favs || localFavs ? (
@@ -160,12 +146,8 @@ export default function WorkDetailPage() {
                   style={{
                     marginLeft: 8,
                     fontSize: 18,
-                    color:
-                      clapDisabled
-                        ? theme.backgroundDim
-                        : theme.tint,
-                  }}
-                >
+                    color: clapDisabled ? theme.backgroundDim : theme.tint,
+                  }}>
                   {localFavs > favs ? localFavs : favs}
                 </Text>
               ) : null}
@@ -182,8 +164,8 @@ export default function WorkDetailPage() {
             ]}
           />
           {!query.isPlaceholderData ? (
-            <Text style={{ fontStyle: "italic" }}>
-              {item.tombstone.replace(`${item.title}, `, "")}
+            <Text style={{ fontStyle: 'italic' }}>
+              {item.tombstone.replace(`${item.title}, `, '')}
             </Text>
           ) : null}
         </View>
@@ -195,12 +177,12 @@ export default function WorkDetailPage() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   title: {
     fontSize: 20,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     marginTop: 12,
     marginBottom: 4,
     flex: 1,

@@ -1,11 +1,11 @@
-import { ExpoRequest, ExpoResponse } from "expo-router/server";
-import storage from "node-persist";
-import { keys } from "lodash";
+import { ExpoRequest, ExpoResponse } from 'expo-router/server';
+import { keys } from 'lodash';
+import storage from 'node-persist';
 
 async function initIfNeeded() {
   // narrator: it's always needed (right now)
   await storage.init({
-    dir: "./storage",
+    dir: './storage',
     expiredInterval: 0,
   });
 }
@@ -14,9 +14,7 @@ async function initIfNeeded() {
 
 export async function GET(request: ExpoRequest) {
   await initIfNeeded();
-  const favs = (await storage.getItem("favs")) || {};
-  const images = (await storage.getItem("images")) || {};
-  return ExpoResponse.json(
-    keys(favs).map((id) => ({ id, favs: favs[id], image: images[id] }))
-  );
+  const favs = (await storage.getItem('favs')) || {};
+  const images = (await storage.getItem('images')) || {};
+  return ExpoResponse.json(keys(favs).map((id) => ({ id, favs: favs[id], image: images[id] })));
 }

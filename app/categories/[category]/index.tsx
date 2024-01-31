@@ -1,15 +1,10 @@
-import { StyleSheet, Pressable } from "react-native";
-import { useEffect } from "react";
-import { Link, Stack, useLocalSearchParams } from "expo-router";
-import { Image } from "expo-image";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-import {
-  Text,
-  View,
-  FlatList,
-  useTheme,
-  LoadingShade,
-} from "@/components/Themed";
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { Image } from 'expo-image';
+import { Link, Stack, useLocalSearchParams } from 'expo-router';
+import { useEffect } from 'react';
+import { StyleSheet, Pressable } from 'react-native';
+
+import { Text, View, FlatList, useTheme, LoadingShade } from '@/components/Themed';
 
 export default function CategoryPage() {
   const theme = useTheme();
@@ -22,15 +17,13 @@ export default function CategoryPage() {
   const query = useQuery({
     queryKey: [`category:${category}`],
     queryFn: async () => {
-      const response = await fetch(
-        `/categories/${encodeURIComponent(category)}/works`
-      );
+      const response = await fetch(`/categories/${encodeURIComponent(category)}/works`);
       return await response.json();
     },
   });
 
   useEffect(() => {
-    if (query.status === "success") {
+    if (query.status === 'success') {
       query.data?.data.forEach((item: any) => {
         queryClient.setQueryData([`worksCache:${item.id}`], {
           images: { web: { url: item.images.web.url } },
@@ -52,10 +45,10 @@ export default function CategoryPage() {
         renderItem={({ item }) => (
           <Link asChild href={`/works/${item.id}/`}>
             <Pressable>
-              <View style={{ flexDirection: "row", paddingHorizontal: 16 }}>
-                <View style={{ flex: 1, justifyContent: "flex-start" }}>
+              <View style={{ flexDirection: 'row', paddingHorizontal: 16 }}>
+                <View style={{ flex: 1, justifyContent: 'flex-start' }}>
                   <Text style={styles.title}>{item.title}</Text>
-                  <Text style={{ fontStyle: "italic" }}>
+                  <Text style={{ fontStyle: 'italic' }}>
                     {item.creation_date_earliest !== item.creation_date_latest
                       ? `${item.creation_date_earliest}-${item.creation_date_latest}`
                       : `${item.creation_date_earliest}`}
@@ -72,9 +65,7 @@ export default function CategoryPage() {
           </Link>
         )}
         ItemSeparatorComponent={() => (
-          <View
-            style={[styles.separator, { backgroundColor: theme.backgroundDim }]}
-          />
+          <View style={[styles.separator, { backgroundColor: theme.backgroundDim }]} />
         )}
       />
       <LoadingShade isLoading={query.isPending} />
@@ -85,12 +76,12 @@ export default function CategoryPage() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   title: {
     fontSize: 20,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     marginTop: 12,
     marginBottom: 4,
   },

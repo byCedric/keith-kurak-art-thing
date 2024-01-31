@@ -1,4 +1,4 @@
-import * as SplashScreen from "expo-splash-screen";
+import * as SplashScreen from 'expo-splash-screen';
 import { type PropsWithChildren } from 'react';
 
 // Prevent auto-hiding splash screen until the splash screen provider is rendered

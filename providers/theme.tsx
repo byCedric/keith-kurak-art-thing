@@ -1,9 +1,9 @@
-import { type PropsWithChildren } from 'react';
 import {
   DarkTheme,
   DefaultTheme,
   ThemeProvider as NavigationThemeProvider,
 } from '@react-navigation/native';
+import { type PropsWithChildren } from 'react';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
 
@@ -14,5 +14,5 @@ export function ThemeProvider({ children }: PropsWithChildren) {
     <NavigationThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       {children}
     </NavigationThemeProvider>
-  )
+  );
 }
