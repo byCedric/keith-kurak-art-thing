@@ -11,7 +11,7 @@ import {
   LoadingShade,
 } from "@/components/Themed";
 
-export default function CategoryScreen() {
+export default function CategoryPage() {
   const theme = useTheme();
 
   const { category }: { category: string } = useLocalSearchParams();

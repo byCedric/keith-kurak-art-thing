@@ -1,5 +1,8 @@
 # Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
 
+# project
+storage
+
 # dependencies
 node_modules/
 
@@ -39,4 +42,3 @@ yarn-error.*
 
 expo-env.d.ts
 # @end expo-cli
-storage/**

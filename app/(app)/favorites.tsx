@@ -5,7 +5,7 @@ import { Image } from "expo-image";
 import { Link } from "expo-router";
 import { Text, View, FlatList, useTheme } from "@/components/Themed";
 
-export default function FavoritesScreen() {
+export default function FavoritesPage() {
   const theme = useTheme();
 
   const queryClient = useQueryClient();

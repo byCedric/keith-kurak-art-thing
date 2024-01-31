@@ -34,7 +34,7 @@ async function postFav(id: string, count: number, image: string) {
   }
 }
 
-export default function IdScreen() {
+export default function WorkDetailPage() {
   const theme = useTheme();
 
   const dimensions = useWindowDimensions();
