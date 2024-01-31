@@ -5,7 +5,7 @@ import {
   ThemeProvider as NavigationThemeProvider,
 } from '@react-navigation/native';
 
-import { useColorScheme } from '@/components/useColorScheme';
+import { useColorScheme } from '@/hooks/useColorScheme';
 
 export function ThemeProvider({ children }: PropsWithChildren) {
   const colorScheme = useColorScheme();
