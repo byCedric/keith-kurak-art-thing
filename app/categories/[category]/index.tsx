@@ -8,18 +8,15 @@ import { Text, View, FlatList, useTheme, LoadingShade } from '~/components/Theme
 
 export default function CategoryPage() {
   const theme = useTheme();
-
   const { category }: { category: string } = useLocalSearchParams();
 
   const queryClient = useQueryClient();
-
-  // Queries
   const query = useQuery({
     queryKey: [`category:${category}`],
-    queryFn: async () => {
-      const response = await fetch(`/categories/${encodeURIComponent(category)}/works`);
-      return await response.json();
-    },
+    queryFn: () =>
+      fetch(`/categories/${encodeURIComponent(category)}/works`).then((response) =>
+        response.json(),
+      ),
   });
 
   useEffect(() => {
@@ -33,12 +30,8 @@ export default function CategoryPage() {
   }, [query.status]);
 
   return (
-    <View style={{ flex: 1 }}>
-      <Stack.Screen
-        options={{
-          title: category,
-        }}
-      />
+    <>
+      <Stack.Screen options={{ title: category }} />
       <FlatList
         data={query.data?.data}
         keyExtractor={(item) => item.id}
@@ -69,7 +62,7 @@ export default function CategoryPage() {
         )}
       />
       <LoadingShade isLoading={query.isPending} />
-    </View>
+    </>
   );
 }
 

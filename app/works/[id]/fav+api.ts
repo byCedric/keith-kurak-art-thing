@@ -37,8 +37,8 @@ export async function POST(request: ExpoRequest) {
   // Store the updated data back to local store
   // prettier-ignore
   await Promise.all([
-    store.setItem('favs', JSON.stringify(favorites)),
-    store.setItem('images', JSON.stringify(images)),
+    store.setItem('favs', favorites),
+    store.setItem('images', images),
   ]);
 
   return ExpoResponse.json({ favs: favorites[id] });

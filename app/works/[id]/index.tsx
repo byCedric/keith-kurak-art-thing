@@ -32,26 +32,19 @@ async function postFav(id: string, count: number, image: string) {
 
 export default function WorkDetailPage() {
   const theme = useTheme();
-
   const dimensions = useWindowDimensions();
-
   const { id }: { id: string } = useLocalSearchParams();
 
-  const queryClient = useQueryClient();
-
-  const [localFavs, setLocalFavs] = useState(0);
-
-  const [clapDisabled, setClapDisabled] = useState(false);
-
   const readyMeterProgress = useSharedValue(0);
-
   const progressBarStyle = useAnimatedStyle(() => {
     return {
       width: `${readyMeterProgress.value}%`,
     };
   });
 
-  // Queries
+  const [localFavs, setLocalFavs] = useState(0);
+  const [clapDisabled, setClapDisabled] = useState(false);
+  const queryClient = useQueryClient();
   const query = useQuery({
     queryKey: [`id:${id}`],
     queryFn: async () => {
@@ -65,7 +58,6 @@ export default function WorkDetailPage() {
       };
     },
   });
-
   const favQuery = useQuery({
     queryKey: [`favs:${id}`],
     queryFn: async () => {

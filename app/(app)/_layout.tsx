@@ -14,7 +14,7 @@ function TabBarIcon(props: {
   return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
 }
 
-export default function TabLayout() {
+export default function AppLayout() {
   const colorScheme = useColorScheme();
 
   return (
