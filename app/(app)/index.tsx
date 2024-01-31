@@ -1,9 +1,9 @@
 import { Link } from 'expo-router';
 import { StyleSheet, Pressable } from 'react-native';
 
-import { Text, View, FlatList, useTheme } from '@/components/Themed';
+import { Text, View, FlatList, useTheme } from '~/components/Themed';
 
-const categories = require('@/data/categories.json');
+const categories = require('~/data/categories.json');
 
 export default function BrowsePage() {
   const theme = useTheme();

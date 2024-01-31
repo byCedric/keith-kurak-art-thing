@@ -4,7 +4,7 @@ import { Link, Stack, useLocalSearchParams } from 'expo-router';
 import { useEffect } from 'react';
 import { StyleSheet, Pressable } from 'react-native';
 
-import { Text, View, FlatList, useTheme, LoadingShade } from '@/components/Themed';
+import { Text, View, FlatList, useTheme, LoadingShade } from '~/components/Themed';
 
 export default function CategoryPage() {
   const theme = useTheme();

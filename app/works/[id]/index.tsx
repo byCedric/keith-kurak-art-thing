@@ -11,7 +11,7 @@ import Animated, {
   useAnimatedStyle,
 } from 'react-native-reanimated';
 
-import { Text, View, useTheme } from '@/components/Themed';
+import { Text, View, useTheme } from '~/components/Themed';
 
 async function postFav(id: string, count: number, image: string) {
   try {

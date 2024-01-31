@@ -4,7 +4,7 @@ import { Link } from 'expo-router';
 import { useEffect } from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 
-import { Text, View, FlatList, useTheme } from '@/components/Themed';
+import { Text, View, FlatList, useTheme } from '~/components/Themed';
 
 export default function FavoritesPage() {
   const theme = useTheme();

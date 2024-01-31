@@ -12,7 +12,7 @@ import {
 
 import { useColorScheme } from '../hooks/useColorScheme';
 
-import Colors from '@/constants/Colors';
+import Colors from '~/constants/Colors';
 
 type ThemeProps = {
   lightColor?: string;
